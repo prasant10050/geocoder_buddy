@@ -61,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
       isLoading = false;
       details = data.toJson();
     });
-    print(data.address.village);
+    print(data.address?.village);
   }
 
   @override
@@ -115,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                             data: item,
                                           )));
                             },
-                            title: Text(item.displayName),
+                            title: Text(item.displayName ?? ''),
                           );
                         })
                     : const Center(

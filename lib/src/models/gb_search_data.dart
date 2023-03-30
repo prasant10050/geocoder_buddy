@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'package:json_annotation/json_annotation.dart';
+part 'gb_search_data.g.dart';
 
 List<GBSearchData> bgSearchDataFromJson(String str) => List<GBSearchData>.from(
     json.decode(str).map((x) => GBSearchData.fromJson(x)));
@@ -6,6 +8,7 @@ List<GBSearchData> bgSearchDataFromJson(String str) => List<GBSearchData>.from(
 String bgSearchDataToJson(List<GBSearchData> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
+@JsonSerializable()
 class GBSearchData {
   GBSearchData({
     required this.placeId,
@@ -17,17 +20,28 @@ class GBSearchData {
     required this.placeRank,
     required this.importance,
   });
+  @JsonKey(name: 'place_id')
+  final int? placeId;
+  @JsonKey(name: 'osm_id')
+  final int? id;
+  @JsonKey(name: 'boundingbox')
+  final List<String>? boundingbox;
+  @JsonKey(name: 'lat')
+  final String lat;
+  @JsonKey(name: 'lon')
+  final String lon;
+  @JsonKey(name: 'display_name')
+  final String? displayName;
+  @JsonKey(name: 'place_rank')
+  final int? placeRank;
+  @JsonKey(name: 'importance')
+  final double? importance;
+  factory GBSearchData.fromJson(Map<String, dynamic> json) =>
+      _$GBSearchDataFromJson(json);
 
-  int placeId;
-  int id;
-  List<String> boundingbox;
-  String lat;
-  String lon;
-  String displayName;
-  int placeRank;
-  double importance;
+  Map<String, dynamic> toJson() => _$GBSearchDataToJson(this);
 
-  factory GBSearchData.fromJson(Map<String, dynamic> json) => GBSearchData(
+  /*factory GBSearchData.fromJson(Map<String, dynamic> json) => GBSearchData(
         placeId: json["place_id"],
         id: json["osm_id"],
         boundingbox: List<String>.from(json["boundingbox"].map((x) => x)),
@@ -47,5 +61,5 @@ class GBSearchData {
         "display_name": displayName,
         "place_rank": placeRank,
         "importance": importance,
-      };
+      };*/
 }

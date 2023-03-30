@@ -7,20 +7,39 @@ part of 'error_model.dart';
 // **************************************************************************
 
 ErrorModel _$ErrorModelFromJson(Map<String, dynamic> json) => ErrorModel(
-      error: json['error'],
+      error: json['error'] == null
+          ? null
+          : ErrorBean.fromJson(json['error'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$ErrorModelToJson(ErrorModel instance) =>
-    <String, dynamic>{
-      'error': instance.error,
-    };
+Map<String, dynamic> _$ErrorModelToJson(ErrorModel instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('error', instance.error?.toJson());
+  return val;
+}
 
 ErrorBean _$ErrorBeanFromJson(Map<String, dynamic> json) => ErrorBean(
-      code: json['code'],
-      message: json['message'],
+      code: json['code'] as int?,
+      message: json['message'] as String?,
     );
 
-Map<String, dynamic> _$ErrorBeanToJson(ErrorBean instance) => <String, dynamic>{
-      'code': instance.code,
-      'message': instance.message,
-    };
+Map<String, dynamic> _$ErrorBeanToJson(ErrorBean instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('code', instance.code);
+  writeNotNull('message', instance.message);
+  return val;
+}

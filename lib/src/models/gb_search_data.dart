@@ -8,7 +8,7 @@ List<GBSearchData> bgSearchDataFromJson(String str) => List<GBSearchData>.from(
 String bgSearchDataToJson(List<GBSearchData> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class GBSearchData {
   GBSearchData({
     required this.placeId,

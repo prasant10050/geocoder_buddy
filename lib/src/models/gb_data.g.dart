@@ -21,6 +21,10 @@ GBData _$GBDataFromJson(Map<String, dynamic> json) => GBData(
       boundingbox: (json['boundingbox'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
+      name: json['name'] as String?,
+      addresstype: json['addresstype'] as String?,
+      category: json['category'] as String?,
+      type: json['type'] as String?,
     );
 
 Map<String, dynamic> _$GBDataToJson(GBData instance) => <String, dynamic>{
@@ -32,8 +36,12 @@ Map<String, dynamic> _$GBDataToJson(GBData instance) => <String, dynamic>{
       'place_rank': instance.placeRank,
       'importance': instance.importance,
       'display_name': instance.displayName,
-      'address': instance.address,
+      'address': instance.address?.toJson(),
       'boundingbox': instance.boundingbox,
+      'category': instance.category,
+      'type': instance.type,
+      'addresstype': instance.addresstype,
+      'name': instance.name,
     };
 
 Address _$AddressFromJson(Map<String, dynamic> json) => Address(
@@ -49,13 +57,18 @@ Address _$AddressFromJson(Map<String, dynamic> json) => Address(
       houseNumber: json['house_number'] as String?,
       city: json['city'] as String?,
       municipality: json['municipality'] as String?,
+      suburb: json['suburb'] as String?,
+      cityDistrict: json['city_district'] as String?,
+      province: json['province'] as String?,
     );
 
 Map<String, dynamic> _$AddressToJson(Address instance) => <String, dynamic>{
       'road': instance.road,
       'village': instance.village,
       'county': instance.county,
+      'suburb': instance.suburb,
       'state_district': instance.stateDistrict,
+      'city_district': instance.cityDistrict,
       'state': instance.state,
       'ISO3166-2-lvl4': instance.iso31662Lvl4,
       'postcode': instance.postcode,
@@ -64,4 +77,5 @@ Map<String, dynamic> _$AddressToJson(Address instance) => <String, dynamic>{
       'city': instance.city,
       'municipality': instance.municipality,
       'house_number': instance.houseNumber,
+      'province': instance.province,
     };

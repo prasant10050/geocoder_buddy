@@ -1,13 +1,14 @@
 // Geocoder Buddy Data Model
 import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
+
 part 'gb_data.g.dart';
 
 GBData gbDataFromJson(String str) => GBData.fromJson(json.decode(str));
 
 String gbDataToJson(GBData data) => json.encode(data.toJson());
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class GBData {
   GBData({
     required this.placeId,
@@ -20,7 +21,12 @@ class GBData {
     required this.displayName,
     required this.address,
     required this.boundingbox,
+    required this.name,
+    required this.addresstype,
+    required this.category,
+    required this.type,
   });
+
   @JsonKey(name: 'place_id')
   final int? placeId;
   @JsonKey(name: 'osm_type')
@@ -41,6 +47,23 @@ class GBData {
   final Address? address;
   @JsonKey(name: 'boundingbox')
   final List<String>? boundingbox;
+
+  //category
+  @JsonKey(name: 'category')
+  final String? category;
+
+  //type
+  @JsonKey(name: 'type')
+  final String? type;
+
+  //addresstype
+  @JsonKey(name: 'addresstype')
+  final String? addresstype;
+
+  //name
+  @JsonKey(name: 'name')
+  final String? name;
+
   factory GBData.fromJson(Map<String, dynamic> json) => _$GBDataFromJson(json);
 
   Map<String, dynamic> toJson() => _$GBDataToJson(this);
@@ -72,7 +95,7 @@ class GBData {
       };*/
 }
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class Address {
   Address({
     required this.road,
@@ -87,15 +110,23 @@ class Address {
     required this.houseNumber,
     required this.city,
     required this.municipality,
+    required this.suburb,
+    required this.cityDistrict,
+    required this.province,
   });
+
   @JsonKey(name: 'road')
   final String? road;
   @JsonKey(name: 'village')
   final String? village;
   @JsonKey(name: 'county')
   final String? county;
+  @JsonKey(name: 'suburb')
+  final String? suburb;
   @JsonKey(name: 'state_district')
   final String? stateDistrict;
+  @JsonKey(name: 'city_district')
+  final String? cityDistrict;
   @JsonKey(name: 'state')
   final String? state;
   @JsonKey(name: 'ISO3166-2-lvl4')
@@ -112,12 +143,15 @@ class Address {
   final String? municipality;
   @JsonKey(name: 'house_number')
   final String? houseNumber;
+  @JsonKey(name: 'province')
+  final String? province;
+
   factory Address.fromJson(Map<String, dynamic> json) =>
       _$AddressFromJson(json);
 
   Map<String, dynamic> toJson() => _$AddressToJson(this);
 
-  /*factory Address.fromJson(Map<String, dynamic> json) => Address(
+/*factory Address.fromJson(Map<String, dynamic> json) => Address(
         road: json["road"],
         village: json["village"],
         county: json["county"],

@@ -60,6 +60,7 @@ Address _$AddressFromJson(Map<String, dynamic> json) => Address(
       suburb: json['suburb'] as String?,
       cityDistrict: json['city_district'] as String?,
       province: json['province'] as String?,
+      town: json['town'] as String?,
     );
 
 Map<String, dynamic> _$AddressToJson(Address instance) => <String, dynamic>{
@@ -78,4 +79,5 @@ Map<String, dynamic> _$AddressToJson(Address instance) => <String, dynamic>{
       'municipality': instance.municipality,
       'house_number': instance.houseNumber,
       'province': instance.province,
+      'town': instance.town,
     };

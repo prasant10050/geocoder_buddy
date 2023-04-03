@@ -113,6 +113,7 @@ class Address {
     required this.suburb,
     required this.cityDistrict,
     required this.province,
+    required this.town,
   });
 
   @JsonKey(name: 'road')
@@ -145,6 +146,8 @@ class Address {
   final String? houseNumber;
   @JsonKey(name: 'province')
   final String? province;
+  @JsonKey(name: 'town')
+  final String? town;
 
   factory Address.fromJson(Map<String, dynamic> json) =>
       _$AddressFromJson(json);

@@ -1,28 +1,30 @@
 name: geocoder_buddy
 description: Forward, Reverse geocoding and Search Address without any apikey.
-version: 1.0.1
-homepage: https://github.com/flutterbuddy1/geocoder_buddy
-repository: https://github.com/flutterbuddy1/geocoder_buddy
-issue_tracker: https://github.com/flutterbuddy1/geocoder_buddy/issues
+version: 1.0.2
+homepage: https://github.com/prasant10050/geocoder_buddy
+repository: https://github.com/prasant10050/geocoder_buddy
+issue_tracker: https://github.com/prasant10050/geocoder_buddy/issues
 
 environment:
-  sdk: ">=2.17.5 <3.0.0"
-  flutter: ">=1.17.0"
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  http: ^0.13.4
-  dartdoc: ^6.0.0
+  http: ^1.1.0
+  dartdoc: ^6.3.0
   json_annotation:
   dio:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^2.0.2
   build_runner:
   json_serializable:
+
+dependency_overrides:
+  source_span: 1.9.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
